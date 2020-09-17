@@ -1,0 +1,13 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-navy {
+  height: 60px;
+  padding: 0 120px;
+
+  .nav-link {
+    color: $light-grey-two;
+    font-size: 14px;
+  }
+
+  .navbar-brand {
+    color: white;
+  }
+}

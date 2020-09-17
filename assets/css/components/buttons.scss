@@ -1,0 +1,21 @@
+.btn-purple {
+  color: white;
+  background-color: $navy;
+  border-color: $navy;
+
+  &:hover {
+    background-color: $dark-navy;
+    border-color: $dark-navy;
+  }
+}
+
+.btn-outline-purple {
+  color: $navy;
+  border: 1px solid $navy;
+
+  &:hover {
+    background-color: $navy;
+    border-color: $navy;
+    color: white;
+  }
+}

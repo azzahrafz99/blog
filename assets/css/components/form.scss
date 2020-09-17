@@ -1,0 +1,33 @@
+.form {
+  &__registration, &__session {
+    .form-group {
+      margin-bottom: 30px;
+    }
+
+    .control-label {
+      margin: 0;
+    }
+
+    .form-control {
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid $light-dusty-purple-two;
+      font-size: 14px;
+      padding: 0;
+
+      &:focus {
+        box-shadow: none;
+        border-bottom: 1px solid $navy;
+        color: $dusty-purple;
+      }
+    }
+  }
+
+  &__session {
+    margin-top: 15%;
+
+    h1 {
+      margin-bottom: 15%;
+    }
+  }
+}

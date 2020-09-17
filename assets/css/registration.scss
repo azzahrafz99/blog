@@ -1,0 +1,78 @@
+.card-wrapper {
+  margin-top: 7.5%;
+}
+
+.card {
+  &__custom {
+    height: 650px;
+    padding: 0;
+
+    .right {
+      background-image: url('/images/background.jpg');
+      background-position: right;
+      background-size: cover;
+      padding: 0;
+
+      .caption {
+        bottom: 8px;
+        font-size: 14px;
+        margin-left: 15px;
+        opacity: 0.8;
+        position: absolute;
+
+        span, a {
+          color: white;
+        }
+      }
+    }
+
+    .left {
+      background-color: white;
+      padding: 50px;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.form {
+  h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    margin-top: 30px;
+    padding-top: 30px;
+
+    .btn {
+      margin-bottom: 15px;
+    }
+  }
+
+  .btn-outline-purple {
+    width: 100%;
+  }
+}
+
+.logo {
+  left: 35px;
+  position: absolute;
+  top: 35px;
+
+  img {
+    width: 26px;
+  }
+
+  h3 {
+    color: $navy;
+    display: inline;
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 4px;
+  }
+}
+
+.links {
+  font-size: 14px;
+  margin-top: 20px;
+}
