@@ -1,0 +1,49 @@
+<%= render BlogWeb.SharedView, "_navbar_light.html", assigns %>
+
+<div class="row m-0">
+  <div class="col-lg-6 offset-lg-3 margin-top-100">
+    <div class="row m-0 profile">
+      <div class="col-lg-8 p-0">
+        <div class="row m-0">
+          <div class="col-lg-8 p-0">
+            <h3 class="profile__name"><%= @profile.first_name %> <%= @profile.last_name %></h3>
+          </div>
+          <%= if @current_user do %>
+            <%= if @current_user.id == @profile.user_id do %>
+              <div class="col-lg-4 p-0">
+                <a href="#" class="btn btn-outline-primary btn-sm btn-edit-profile">Edit Profile</a>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <p class="profile__bio">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+          there live the blind texts.</p>
+        <p class="profile__join-date">Join since <%= join_date(@profile.inserted_at) %></p>
+      </div>
+      <div class="col-lg-2 offset-lg-2 p-0 text-right">
+        <img src="/images/user.png" class="profile__avatar">
+      </div>
+    </div>
+
+    <div class="row articles">
+      <p class="title">Latest Articles</p>
+
+      <%= for article <- @latest_articles do %>
+        <div class="col-lg-12 p-3 article">
+          <div class="card">
+            <img class="card-img-top"
+              src="https://images.unsplash.com/photo-1600489000360-34bd69182634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80"
+              alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= article.title %></h5>
+              <div class="card-text"><%= markdown(description(article.body)) %></div>
+                <%= link to: Routes.article_path(@conn, :show, article.id), class: "btn btn-primary" do %>
+                  Read More
+                <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

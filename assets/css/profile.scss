@@ -1,0 +1,79 @@
+.profile {
+  border-bottom: 1px solid $light-grey;
+  padding-bottom: 8px;
+
+  &__name {
+    color: $navy;
+  }
+
+  &__bio {
+    font-size: 14px;
+    color: $dusty-purple;
+    margin-bottom: 10px;
+  }
+
+  &__join-date {
+    color: $light-grey-three;
+    font-size: 13px;
+    margin-top: 25px;
+  }
+
+  &__avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .btn-edit-profile {
+    font-size: 12px;
+    padding: 5px 15px;
+    margin-top: 3px;
+  }
+}
+
+.articles {
+  margin-top: 35px;
+
+  .title {
+    color: $navy;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .card {
+    margin-bottom: 30px;
+    padding: 0;
+
+    .card-body {
+      padding: 30px;
+
+      .card-text {
+        color: $dusty-purple;
+        font-size: 14px;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+      }
+
+      .card-title {
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        color: $light-blue;
+        display: -webkit-box;
+        margin-bottom: 20px;
+        overflow: hidden;
+      }
+
+      .btn {
+        font-size: 13px;
+        padding: 6px 15px;
+      }
+    }
+
+    .card-img-top {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+  }
+}

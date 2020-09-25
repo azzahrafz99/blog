@@ -2,6 +2,6 @@
 
 <div class="row m-0">
   <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2 margin-top-50">
-    <%= render "form.html", Map.put(assigns, :action, Routes.article_path(@conn, :create)) %>
+    <%= render "form.html", Map.put(assigns, :action, Routes.article_path(@conn, :update, @article)) %>
   </div>
 </div>

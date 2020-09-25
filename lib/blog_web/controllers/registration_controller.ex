@@ -1,7 +1,9 @@
 defmodule BlogWeb.RegistrationController do
   use BlogWeb, :controller
 
+  alias Blog.Repo
   alias Blog.Accounts
+  alias Blog.Accounts.Profile
 
   def new(conn, _) do
     render(conn, "new.html", changeset: conn)
@@ -11,6 +13,7 @@ defmodule BlogWeb.RegistrationController do
     case Accounts.register(registration_params) do
       {:ok, user} ->
         conn
+        |> Repo.insert %Profile{user_id: user.id}
         |> put_session(:current_user_id, user.id)
         |> put_flash(:info, "You've Signed up and Signed in!")
         |> redirect(to: Routes.page_path(conn, :index))

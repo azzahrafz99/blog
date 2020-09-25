@@ -1,53 +1,56 @@
-<div class="row">
-  <div class="col-xs-8 offset-xs-2 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2 margin-top-50 card-wrapper">
-    <div class="card card__custom">
-      <%= render BlogWeb.SharedView, "_alert.html", assigns %>
+<div class="container-fluid bg-light">
+  <div class="row m-0">
+    <div class="col-xs-8 offset-xs-2 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2 margin-top-50 card-wrapper">
+      <div class="card card__custom">
+        <%= render BlogWeb.SharedView, "_alert.html", assigns %>
 
-      <div class="row">
-        <div class="col-lg-6 left">
-          <div class="form form__registration">
-            <%= form_for @changeset, Routes.registration_path(@conn, :create), [as: :registration, class: "form-signup"], fn f -> %>
-              <div class="text-center">
-                <h1>Sign Up</h1>
-              </div>
+        <div class="row">
+          <div class="col-lg-6 left">
+            <div class="form form__registration">
+              <%= form_for @changeset, Routes.registration_path(@conn, :create), [as: :registration, class: "form-signup"], fn f -> %>
+                <div class="text-center">
+                  <h1>Sign Up</h1>
+                </div>
 
-              <div class="form-group">
-                <%= label f, :email, class: "control-label" %>
-                <%= text_input f, :email, class: "form-control", required: true, autofocus: true %>
-                <%= error_tag f, :email %>
-              </div>
+                <div class="form-group">
+                  <%= label f, :email, class: "control-label" %>
+                  <%= text_input f, :email, class: "form-control", required: true, autofocus: true %>
+                  <%= error_tag f, :email %>
+                </div>
 
-              <div class="form-group">
-                <%= label f, :username, class: "control-label" %>
-                <%= text_input f, :username, class: "form-control", required: true %>
-                <%= error_tag f, :username %>
-              </div>
+                <div class="form-group">
+                  <%= label f, :username, class: "control-label" %>
+                  <%= text_input f, :username, class: "form-control", required: true %>
+                  <%= error_tag f, :username %>
+                </div>
 
-              <div class="form-group">
-                <%= label f, :password, class: "control-label" %>
-                <%= password_input f, :password, class: "form-control", required: true %>
-                <%= error_tag f, :password %>
-              </div>
+                <div class="form-group">
+                  <%= label f, :password, class: "control-label" %>
+                  <%= password_input f, :password, class: "form-control", required: true %>
+                  <%= error_tag f, :password %>
+                </div>
 
-              <div class="form-group">
-                <%= label f, :password_confirmation, class: "control-label" %>
-                <%= password_input f, :password_confirmation, class: "form-control", required: true %>
-                <%= error_tag f, :password_confirmation %>
-              </div>
-              <div class="form-group buttons">
-                <%= submit "Sign Up", class: "btn btn-purple btn-lg btn-block" %>
+                <div class="form-group">
+                  <%= label f, :password_confirmation, class: "control-label" %>
+                  <%= password_input f, :password_confirmation, class: "form-control", required: true %>
+                  <%= error_tag f, :password_confirmation %>
+                </div>
+                <div class="form-group buttons">
+                  <%= submit "Sign Up", class: "btn btn-purple btn-lg btn-block" %>
 
-                <%= link "Sign In", to: Routes.session_path(@conn, :new), class: "btn btn-outline-purple" %>
-              </div>
-            <% end %>
+                  <%= link "Sign In", to: Routes.session_path(@conn, :new), class: "btn btn-outline-purple" %>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-6 right">
-          <div class="caption">
-            <span>Photo by <a href="https://unsplash.com/@sincerelymedia?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Sincerely Media</a> on <a href="https://unsplash.com/s/photos/blog?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+          <div class="col-lg-6 right">
+            <div class="caption">
+              <span>Photo by <a href="https://unsplash.com/@sincerelymedia?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Sincerely Media</a> on <a href="https://unsplash.com/s/photos/blog?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+

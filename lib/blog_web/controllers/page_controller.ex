@@ -1,24 +1,15 @@
 defmodule BlogWeb.PageController do
   use BlogWeb, :controller
 
-  alias Blog.Talk.Room
-  alias Blog.Talk
+  alias Blog.Accounts
+  alias Blog.Post
   alias BlogWeb.Plugs.AuthUser
 
-  plug AuthUser when action in [:edit, :update, :delete]
+  plug AuthUser when action in [:new, :create, :edit, :update, :delete]
 
   def index(conn, _params) do
-    render(conn, "index.html")
-  end
-
-  defp auth_user(conn, _params) do
-    if conn.assigns.signed_in? do
-      conn
-    else
-      conn
-      |> put_flash(:error, "You need to be signed in")
-      |> redirect(to: Routes.session_path(conn, :new))
-      |> halt()
-    end
+    current_user = conn.assigns.current_user
+    profile      = if (current_user), do: Accounts.get_profile(current_user.id), else: nil
+    render(conn, "index.html", latest_articles: Post.latest_articles(), current_user: current_user, profile: profile)
   end
 end

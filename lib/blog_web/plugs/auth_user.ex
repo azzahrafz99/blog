@@ -17,8 +17,4 @@ defmodule BlogWeb.Plugs.AuthUser do
       |> halt()
     end
   end
-
-  def can_access?(user, room) do
-    user && user.id == room.user_id
-  end
 end

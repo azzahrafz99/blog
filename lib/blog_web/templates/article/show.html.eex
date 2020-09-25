@@ -1,0 +1,20 @@
+<%= render BlogWeb.SharedView, "_navbar_light.html", assigns %>
+
+<div class="row m-0">
+  <div class="col-sm-12 col-md-10 offset-md-1 col-lg-3 offset-lg-3 col-xl-6 offset-xl-3 margin-top-100 article-show">
+    <h1 class="article-show__title"><%= @article.title%></h1>
+    <div class="row m-0">
+      <div class="col-6 p-0">
+        <p class="article-show__username">By <%= link @user.username, to: Routes.user_profile_path(@conn, :show, @user, @user.profile) %></p>
+        <p class="article-show__date"><%= format_date(@article.inserted_at) %></p>
+      </div>
+      <div class="col-6 p-0">
+      </div>
+    </div>
+    <br>
+    <div class="article-show__body">
+      <%= markdown(@article.body) %>
+    </div>
+  </div>
+</div>
+

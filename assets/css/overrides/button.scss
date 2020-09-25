@@ -7,3 +7,12 @@
     color: white;
   }
 }
+
+.btn-primary {
+  background-color: $blue;
+  border-color: $blue;
+
+  &:hover {
+    background-color: $light-blue;
+  }
+}

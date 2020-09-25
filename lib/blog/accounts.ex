@@ -1,10 +1,13 @@
 defmodule Blog.Accounts do
   alias Blog.Repo
   alias Blog.Accounts.User
+  alias Blog.Accounts.Profile
+  alias Blog.Post.Article
+
+  import Ecto.Query
 
   def sign_in(email, password) do
     user = Repo.get_by(User, email: email)
-
     cond do
       user && Bcrypt.check_pass(password, user.password_hash) ->
         {:ok, user}
@@ -26,5 +29,22 @@ defmodule Blog.Accounts do
 
   def register(params) do
     User.registration_changeset(%User{}, params) |> Repo.insert()
+  end
+
+  def get_profile(id), do: Repo.get(Profile, id)
+
+  def get_user(id), do: Repo.get(User, id)
+
+  def latest_articles(user_id) do
+    query =
+      from article in Article,
+      join: user in assoc(article, :user),
+      order_by: [desc: article.inserted_at],
+      limit: 3,
+      where: article.user_id == ^user_id
+
+    Repo.all(
+      from [article, user] in query
+    )
   end
 end

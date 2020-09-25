@@ -1,15 +1,73 @@
-<%= unless @signed_in? do %>
-  <nav class="navbar navbar-expand-lg navbar-light bg-navy">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <%= link "Sign In", to: Routes.session_path(@conn, :new), class: "nav-link" %>
-        </li>
-      </ul>
+<%= render BlogWeb.SharedView, "_navbar_navy.html", assigns %>
+
+<section class="section-intro bg-navy">
+  <div class="article">
+    <div class="row m-0">
+      <div class="col-lg-3 p-0">
+        <img src="https://images.unsplash.com/photo-1517191434949-5e90cd67d2b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80" >
+      </div>
+      <div class="col-lg-9">
+        <h1 class="title">We Provide custom tech solutions that help your business grow</h1>
+        <p class="description">Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+        <p class="username">- John Doe -</p>
+      </div>
+  </div>
+</section>
+
+<section class="section-articles">
+  <div class="row">
+    <%= for article <- @latest_articles do %>
+      <div class="col-lg-4 p-3">
+        <div class="card">
+          <img class="card-img-top" src="https://images.unsplash.com/photo-1600489000360-34bd69182634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><%= article.title %></h5>
+            <div class="card-text"><%= markdown(description(article.body)) %></div>
+            <%= link to: Routes.article_path(@conn, :show, article.id), class: "btn btn-primary" do %>
+              Read More
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<section class="section-articles-two">
+  <div class="row">
+    <div class="col-lg-12 article">
+      <div class="row">
+        <div class="col-lg-6 p-4">
+          <p class="article__title">Build a Simple Search with the simple_form Gem in Rails 5</p>
+          <p class="article__author">Michael Bublee</p>
+          <p class="article__date">Sept 20, 2020</p>
+          <p class="article__description">
+The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline</p>
+
+          <a href="#" class="btn btn-primary">Read More</a>
+        </div>
+
+        <div class="col-lg-6 p-4">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" class="article__image" alt="image" />
+        </div>
+      </div>
     </div>
-  </nav>
-<% end %>
+
+    <div class="col-lg-12 article">
+      <div class="row">
+        <div class="col-lg-6 p-4">
+          <p class="article__title">Using the Devise Gem to Handle Authentication in a Rails App</p>
+          <p class="article__author">Michael Bublee</p>
+          <p class="article__date">Sept 20, 2020</p>
+          <p class="article__description">
+The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline</p>
+
+          <a href="#" class="btn btn-primary">Read More</a>
+        </div>
+        <div class="col-lg-6 p-4">
+          <img src="https://images.unsplash.com/photo-1600499015902-d921865560f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" class="article__image" alt="image" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

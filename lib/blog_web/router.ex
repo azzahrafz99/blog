@@ -20,7 +20,15 @@ defmodule BlogWeb.Router do
     get "/", PageController, :index
     resources("/registrations", RegistrationController, only: [:new, :create])
     resources("/sessions", SessionController, only: [:new, :create])
-    resources("/articles", ArticleController)
+
+    resources("/articles", ArticleController) do
+      resources "/comments", CommentController, only: [:create, :delete, :update]
+    end
+
+    resources("/users", UserController) do
+      resources "/profile", ProfileController
+    end
+
     delete "/sign_out", SessionController, :delete
   end
 

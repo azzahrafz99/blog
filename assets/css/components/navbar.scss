@@ -1,13 +1,69 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-navy {
+nav {
   height: 60px;
   padding: 0 120px;
 
-  .nav-link {
-    color: $light-grey-two;
+  .navbar-brand {
+    font-family: 'Montserrat';
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .nav-item {
+    margin: 0 20px;
+
+    .nav-link {
+      font-size: 14px;
+
+      &__profile {
+        border: none !important;
+        margin-top: -6px;
+
+        img.avatar {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        &:hover {
+          border: none;
+        }
+      }
+    }
+  }
+
+  .dropdown-menu.show {
+    color: $dusty-purple;
     font-size: 14px;
   }
+}
+
+nav.navbar-light {
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+
+  ul.navbar-nav {
+    padding-top: 8px;
+  }
+}
+
+nav.bg-navy {
+  box-shadow: none;
 
   .navbar-brand {
     color: white;
+  }
+
+  .nav-link {
+    border-bottom: 1px solid $navy;
+    color: $light-grey-two;
+
+    &:hover {
+      border-bottom: 1px solid;
+    }
+  }
+
+  .dropdown-menu.show {
+    border: none !important;
   }
 }

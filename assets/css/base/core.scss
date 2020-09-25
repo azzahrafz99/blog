@@ -8,9 +8,12 @@ body {
 }
 
 .container-fluid {
-  background-color: $light-purple;
   height: 100%;
   padding: 0;
+}
+
+.container-fluid.bg-light {
+  background-color: $light-purple;
 }
 
 a {

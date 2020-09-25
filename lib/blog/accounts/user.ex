@@ -12,6 +12,10 @@ defmodule Blog.Accounts.User do
     field :password_confirmation, :string, virtual: true
 
     has_many :articles, Blog.Post.Article
+    has_many :comments, Blog.Post.Comment
+
+    has_one :profile, Blog.Accounts.Profile
+
     timestamps()
   end
 
