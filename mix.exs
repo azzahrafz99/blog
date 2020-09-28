@@ -20,7 +20,7 @@ defmodule Blog.MixProject do
   def application do
     [
       mod: {Blog.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ex_machina, :timex, :yamerl]
+      extra_applications: [:logger, :runtime_tools, :ex_machina, :timex, :yamerl, :arc_ecto]
     ]
   end
 
@@ -50,7 +50,9 @@ defmodule Blog.MixProject do
       {:timex, "~> 3.6"},
       {:tzdata, "~> 1.0.3"},
       {:yamerl, "~> 0.8.0"},
-      {:bcrypt_elixir, "~> 2.0"}
+      {:bcrypt_elixir, "~> 2.0"},
+      {:arc, "~> 0.11.0"},
+      {:arc_ecto, "~> 0.11.3"}
     ]
   end
 

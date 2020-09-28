@@ -1,0 +1,23 @@
+<%= render BlogWeb.SharedView, "_navbar_light.html", assigns %>
+
+<div class="row m-0 edit-profile">
+  <div class="col-lg-6 offset-lg-3 margin-top-100">
+    <div class="row m-0">
+      <div class="col-lg-4">
+        <h4>Settings</h4>
+        <div class="setting-menu">
+          <ul class="p-0">
+            <li class="active"><a href="#">About You</a></li>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Membership</a></li>
+          </ul>
+        </div>  
+      </div>
+      <div class="col-lg-8">
+        <h4>About You</h4>
+        <%= render "form.html", Map.put(assigns, :action, Routes.user_profile_path(@conn, :update, @profile.user, @profile)) %>
+      </div>
+    </div>
+  </div>
+</div>
+

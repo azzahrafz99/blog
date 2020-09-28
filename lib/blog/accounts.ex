@@ -47,4 +47,14 @@ defmodule Blog.Accounts do
       from [article, user] in query
     )
   end
+
+  def change_profile(%Profile{} = profile) do
+    Profile.changeset(profile, %{})
+  end
+
+  def update_profile(%Profile{} = profile, attrs) do
+    profile
+    |> Profile.changeset(attrs)
+    |> Repo.update()
+  end
 end

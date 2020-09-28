@@ -5,7 +5,7 @@
 
 .form-article {
   ::placeholder {
-    color: $light-grey-three;
+    color: $grey-two;
   }
 
   .title {
@@ -23,7 +23,7 @@
   .editor-toolbar {
     padding: 0;
     border: none;
-    border-bottom: 1px solid $light-grey-three;
+    border-bottom: 1px solid $grey-two;
   }
 
   .CodeMirror.cm-s-paper.CodeMirror-wrap {

@@ -1,6 +1,6 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
-  <%= link "navbar", to: Routes.page_path(@conn, :index), class: "navbar-brand" %>
+  <%= link "logo", to: Routes.page_path(@conn, :index), class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -18,7 +18,7 @@
       <%= if @signed_in? do %>
         <li class="nav-item dropdown">
           <a class="nav-link nav-link__profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="/images/user.png" class="avatar" >
+            <img src="<%= Blog.ImageUploader.url({@profile.avatar, @profile})%>" class="avatar">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link "My Profile", to: Routes.user_profile_path(@conn, :show, @current_user, @profile), class: "dropdown-item" %>

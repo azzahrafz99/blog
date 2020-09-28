@@ -2,10 +2,13 @@ defmodule Blog.Accounts.Profile do
   use Ecto.Schema
   import Ecto.Changeset
 
+  use Arc.Ecto.Schema
+
   schema "profiles" do
-    field :avatar, :string
+    field :avatar, Blog.ImageUploader.Type
     field :first_name, :string
     field :last_name, :string
+    field :bio, :string
 
     belongs_to :user, Blog.Accounts.User
 
@@ -15,6 +18,8 @@ defmodule Blog.Accounts.Profile do
   @doc false
   def changeset(profile, attrs) do
     profile
-    |> cast(attrs, [:first_name, :last_name, :avatar])
+    |> cast(attrs, [:first_name, :last_name, :avatar, :bio])
+    |> validate_length(:bio, max: 160)
+    |> cast_attachments(attrs, [:avatar])
   end
 end
