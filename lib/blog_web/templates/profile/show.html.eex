@@ -6,7 +6,11 @@
       <div class="col-lg-8 p-0">
         <div class="row m-0">
           <div class="col-lg-8 p-0">
-            <h3 class="profile__name"><%= @profile.first_name %> <%= @profile.last_name %></h3>
+            <%= if @profile.first_name || @profile.last_name do %>
+              <h3 class="profile__name"><%= @profile.first_name %> <%= @profile.last_name %></h3>
+            <% else %>
+              <h3 class="profile__name"><%= @profile.user.username %></h3>
+            <% end %>
           </div>
           <%= if @current_user do %>
             <%= if @current_user.id == @profile.user_id do %>

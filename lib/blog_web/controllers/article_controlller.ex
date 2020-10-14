@@ -3,6 +3,7 @@ defmodule BlogWeb.ArticleController do
 
   alias Blog.Post
   alias Blog.Post.Article
+  alias Blog.Post.Comment
   alias Blog.Repo
   alias BlogWeb.Plugs.AuthUser
 
@@ -19,10 +20,11 @@ defmodule BlogWeb.ArticleController do
 
   def show(conn, %{"id" => id}) do
     article = Post.get_article!(id)
-    article = Repo.preload(article, :user)
+    article = Repo.preload(article, [:user, :comments])
     user    = article.user
     user    = Repo.preload(user, :profile)
-    render(conn, "show.html", article: article, current_user: conn.assigns.current_user, user: user)
+    comment_changeset = Comment.changeset(%Comment{}, %{})
+    render(conn, "show.html", article: article, current_user: conn.assigns.current_user, user: user, profile: user.profile, comment_changeset: comment_changeset)
   end
 
   def create(conn, %{"article" => article_params}) do

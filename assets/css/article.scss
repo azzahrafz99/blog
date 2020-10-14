@@ -63,8 +63,48 @@
   }
 
   &__body {
-    font-size: 18px;
+    font-size: 16px;
     color: $dark-grey;
   }
 }
 
+.form-comment {
+  textarea.form-control {
+    border-radius: 3px;
+    border: 1px solid #efefef;
+    font-size: 14px;
+    margin-top: 5px;
+    padding: 10px;
+    resize: none;
+
+    &:focus {
+      box-shadow: none;
+      border: 1px solid $dusty-purple;
+    }
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 5px 20px;
+  }
+}
+
+.comments {
+  .comment {
+    margin-bottom: 30px;
+    .username {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+  
+    .date {
+      font-size: 13px;
+    }
+  
+    .text {
+      font-size: 15px;
+      width: 80%;
+    }
+  }
+}

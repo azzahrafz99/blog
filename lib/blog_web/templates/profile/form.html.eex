@@ -9,13 +9,13 @@
 
   <div class="form-group">
     <%= label f, :first_name %>
-    <%= text_input f, :first_name, class: "form-control first_name" %>
+    <%= text_input f, :first_name, class: "form-control first_name", required: true %>
     <%= error_tag f, :first_name %>
   </div>
 
   <div class="form-group">
     <%= label f, :last_name %>
-    <%= text_input f, :last_name, class: "form-control last_name" %>
+    <%= text_input f, :last_name, class: "form-control last_name", required: true %>
     <%= error_tag f, :last_name %>
     <small class="form-text text-muted">Your name appears on your Profile page, as your byline, and in your responses. It is a required field.</small>
   </div>

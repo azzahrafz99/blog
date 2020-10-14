@@ -1,0 +1,10 @@
+<%= form_for @comment_changeset, @action, [class: "form-comment"], fn f -> %>
+  <div class="form-group">
+    <%= textarea f, :body, class: "form-control", placeholder: "Leave your comment here", rows: 4 %>
+  </div>
+  <%= hidden_input f, :article_id, value: @article.id %>
+  <div class="form-group">
+    <%= submit "Send", class: "btn btn-primary" %>
+  </div>
+<% end %>
+

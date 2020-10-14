@@ -1,6 +1,7 @@
 defmodule Blog.Post do
   alias Blog.Repo
   alias Blog.Post.Article
+  alias Blog.Post.Comment
 
   import Ecto.Query
 
@@ -8,6 +9,13 @@ defmodule Blog.Post do
     user
     |> Ecto.build_assoc(:articles)
     |> Article.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_comment(user, attrs \\ %{}) do
+    user
+    |> Ecto.build_assoc(:comments)
+    |> Comment.changeset(attrs)
     |> Repo.insert()
   end
 
