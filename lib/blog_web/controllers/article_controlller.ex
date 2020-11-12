@@ -1,4 +1,6 @@
 defmodule BlogWeb.ArticleController do
+  import Ecto.Query
+
   use BlogWeb, :controller
 
   alias Blog.Post
@@ -14,17 +16,21 @@ defmodule BlogWeb.ArticleController do
   end
 
   def new(conn, _params) do
+    user = conn.assigns.current_user
+    user = Repo.preload(user, :profile)
     changeset = Article.changeset(%Article{}, %{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, profile: user.profile)
   end
 
   def show(conn, %{"id" => id}) do
-    article = Post.get_article!(id)
-    article = Repo.preload(article, [:user, :comments])
-    user    = article.user
-    user    = Repo.preload(user, :profile)
+    article           = Post.get_article!(id)
+    article           = Repo.preload(article, [:user, :comments])
+    user              = article.user
+    user              = Repo.preload(user, :profile)
+    comment_query     = from c in Comment, where: [article_id: ^article.id, approved: true]
+    comments          = Repo.all(comment_query)
     comment_changeset = Comment.changeset(%Comment{}, %{})
-    render(conn, "show.html", article: article, current_user: conn.assigns.current_user, user: user, profile: user.profile, comment_changeset: comment_changeset)
+    render(conn, "show.html", article: article, current_user: conn.assigns.current_user, user: user, profile: user.profile, comment_changeset: comment_changeset, comments: comments)
   end
 
   def create(conn, %{"article" => article_params}) do
