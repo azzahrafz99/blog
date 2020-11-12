@@ -11,7 +11,7 @@ defmodule BlogWeb.Endpoint do
   ]
 
   socket "/socket", BlogWeb.UserSocket,
-    websocket: true,
+    websocket: [timeout: 45_000],
     longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
