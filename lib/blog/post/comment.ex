@@ -6,7 +6,8 @@ defmodule Blog.Post.Comment do
     field :approved, :boolean
     field :article_id, :id
     field :body, :string
-    field :user_id, :id
+
+    belongs_to :user, Blog.Accounts.User
 
     timestamps()
   end

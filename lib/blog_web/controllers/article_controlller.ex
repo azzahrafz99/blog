@@ -27,8 +27,8 @@ defmodule BlogWeb.ArticleController do
     article           = Repo.preload(article, [:user, :comments])
     user              = article.user
     user              = Repo.preload(user, :profile)
-    comment_query     = from c in Comment, where: [article_id: ^article.id, approved: true]
-    comments          = Repo.all(comment_query)
+    comments          = article.comments
+    comments          = Repo.preload(comments, :user)
     comment_changeset = Comment.changeset(%Comment{}, %{})
     render(conn, "show.html", article: article, current_user: conn.assigns.current_user, user: user, profile: user.profile, comment_changeset: comment_changeset, comments: comments)
   end
