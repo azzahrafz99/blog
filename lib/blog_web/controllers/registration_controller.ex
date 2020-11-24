@@ -1,4 +1,6 @@
 defmodule BlogWeb.RegistrationController do
+  import Ecto.Query
+
   use BlogWeb, :controller
 
   alias Blog.Repo
@@ -14,6 +16,7 @@ defmodule BlogWeb.RegistrationController do
       {:ok, user} ->
         conn
         |> Repo.insert %Profile{user_id: user.id}
+        |> Repo.preload(user, :profile)
         |> put_session(:current_user_id, user.id)
         |> put_flash(:info, "You've Signed up and Signed in!")
         |> redirect(to: Routes.page_path(conn, :index))
