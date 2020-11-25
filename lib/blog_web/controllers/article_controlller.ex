@@ -44,7 +44,7 @@ defmodule BlogWeb.ArticleController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Article Created!")
-        |> redirect(to: Routes.article_path(conn, :index))
+        |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
