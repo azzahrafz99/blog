@@ -15,7 +15,11 @@ defmodule BlogWeb.PageController do
   def index(conn, _params) do
     current_user = conn.assigns.current_user
     current_user = Repo.preload(current_user, :profile)
-    profile      = if (current_user), do: if (current_user.profile), do: current_user.profile, else: Repo.insert %Profile{user_id: current_user.id}, else: nil
+    profile      = if current_user, do: get_profile(current_user), else: nil
     render(conn, "index.html", latest_articles: Post.latest_articles(), current_user: current_user, profile: profile)
+  end
+
+  defp get_profile(user) do
+    if (user.profile), do: user.profile, else: Repo.insert %Profile{user_id: user.id}
   end
 end
