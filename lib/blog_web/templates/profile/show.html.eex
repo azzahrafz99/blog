@@ -24,7 +24,11 @@
         <p class="profile__join-date">Join since <%= join_date(@profile.inserted_at) %></p>
       </div>
       <div class="col-lg-2 offset-lg-2 p-0 text-right">
-        <img src="<%= Blog.ImageUploader.url({@profile.avatar, @profile})%>" class="profile__avatar">
+        <%= if @profile.avatar do %>
+          <img src="<%= Blog.ImageUploader.url({@profile.avatar, @profile})%>" class="profile__avatar">
+        <% else %>
+          <img src="/images/avatar.png" class="profile__avatar">
+        <% end %>
       </div>
     </div>
 

@@ -3,10 +3,12 @@ defmodule BlogWeb.ArticleController do
 
   use BlogWeb, :controller
 
+  alias Blog.Repo
+
   alias Blog.Post
   alias Blog.Post.Article
   alias Blog.Post.Comment
-  alias Blog.Repo
+
   alias BlogWeb.Plugs.AuthUser
 
   plug AuthUser when action in [:new, :create, :edit, :update, :delete]
@@ -16,8 +18,8 @@ defmodule BlogWeb.ArticleController do
   end
 
   def new(conn, _params) do
-    user = conn.assigns.current_user
-    user = Repo.preload(user, :profile)
+    user      = conn.assigns.current_user
+    user      = Repo.preload(user, :profile)
     changeset = Article.changeset(%Article{}, %{})
     render(conn, "new.html", changeset: changeset, profile: user.profile)
   end
@@ -30,7 +32,11 @@ defmodule BlogWeb.ArticleController do
     comments          = article.comments
     comments          = Repo.preload(comments, :user)
     comment_changeset = Comment.changeset(%Comment{}, %{})
-    render(conn, "show.html", article: article, current_user: conn.assigns.current_user, user: user, profile: user.profile, comment_changeset: comment_changeset, comments: comments)
+    render(
+      conn, "show.html", article: article,
+      current_user: conn.assigns.current_user,user: user,
+      profile: user.profile, comment_changeset: comment_changeset, comments: comments
+    )
   end
 
   def create(conn, %{"article" => article_params}) do

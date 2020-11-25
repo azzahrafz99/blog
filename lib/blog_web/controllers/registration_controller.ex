@@ -15,8 +15,6 @@ defmodule BlogWeb.RegistrationController do
     case Accounts.register(registration_params) do
       {:ok, user} ->
         conn
-        |> Repo.insert %Profile{user_id: user.id}
-        |> Repo.preload(user, :profile)
         |> put_session(:current_user_id, user.id)
         |> put_flash(:info, "You've Signed up and Signed in!")
         |> redirect(to: Routes.page_path(conn, :index))

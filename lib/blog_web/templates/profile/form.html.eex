@@ -1,7 +1,11 @@
 <%= form_for @changeset, @action, [multipart: true, class: "form-profile"], fn f -> %>
   <div class="form-group">
     <%= label f, :avatar, class: "avatar-label" do %>
-      <img src="<%= Blog.ImageUploader.url({@profile.avatar, @profile})%>" class="avatar">
+      <%= if @profile.avatar do %>
+        <img src="<%= Blog.ImageUploader.url({@profile.avatar, @profile})%>" class="avatar">
+      <% else %>
+        <img src="/images/avatar.png" class="avatar">
+      <% end %>
       <img src="/images/icons/camera.png" class="icon">
     <% end %>
     <%= file_input f, :avatar, class: "form-control-file" %>

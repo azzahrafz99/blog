@@ -20,7 +20,7 @@
             <%= if @profile.avatar do %>
               <img src="<%= Blog.ImageUploader.url({@profile.avatar, @profile})%>" class="avatar">
             <% else %>
-              <img src="" class="avatar">
+              <img src="/images/avatar.png" class="avatar">
             <% end %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
