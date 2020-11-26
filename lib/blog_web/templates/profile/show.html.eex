@@ -33,23 +33,26 @@
     </div>
 
     <div class="row articles">
-      <p class="title">Latest Articles</p>
-
-      <%= for article <- @latest_articles do %>
-        <div class="col-lg-12 p-3 article">
-          <div class="card">
-            <img class="card-img-top"
-              src="https://images.unsplash.com/photo-1600489000360-34bd69182634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title"><%= article.title %></h5>
-              <div class="card-text"><%= markdown(description(article.body)) %></div>
-                <%= link to: Routes.article_path(@conn, :show, article.id), class: "btn btn-primary" do %>
-                  Read More
-                <% end %>
+      <%= if length(@latest_articles) > 0 do %>
+        <p class="title">Latest Articles</p>
+        <%= for article <- @latest_articles do %>
+          <div class="col-lg-12 p-3 article">
+            <div class="card">
+              <img class="card-img-top"
+                src="https://images.unsplash.com/photo-1600489000360-34bd69182634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title"><%= article.title %></h5>
+                <div class="card-text"><%= markdown(description(article.body)) %></div>
+                  <%= link to: Routes.article_path(@conn, :show, article.id), class: "btn btn-primary" do %>
+                    Read More
+                  <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <p class="title">You have not post anything yet.</p>
       <% end %>
     </div>
   </div>
