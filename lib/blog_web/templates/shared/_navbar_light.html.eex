@@ -19,7 +19,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link nav-link__profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= if @profile.avatar do %>
-              <img src="<%= Blog.ImageUploader.url({@profile.avatar, @profile})%>" class="avatar">
+              <img src="<%= @profile.avatar_url%>" class="avatar">
             <% else %>
               <img src="/images/avatar.png" class="avatar">
             <% end %>

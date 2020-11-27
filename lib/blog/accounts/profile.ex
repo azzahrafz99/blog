@@ -9,6 +9,7 @@ defmodule Blog.Accounts.Profile do
     field :first_name, :string
     field :last_name, :string
     field :bio, :string
+    field :avatar_url, :string
 
     belongs_to :user, Blog.Accounts.User
 
@@ -18,7 +19,7 @@ defmodule Blog.Accounts.Profile do
   @doc false
   def changeset(profile, attrs) do
     profile
-    |> cast(attrs, [:first_name, :last_name, :avatar, :bio])
+    |> cast(attrs, [:first_name, :last_name, :avatar, :bio, :avatar_url])
     |> validate_length(:bio, max: 160)
     |> cast_attachments(attrs, [:avatar])
   end

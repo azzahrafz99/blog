@@ -25,7 +25,7 @@
       </div>
       <div class="col-lg-2 offset-lg-2 p-0 text-right">
         <%= if @profile.avatar do %>
-          <img src="<%= Blog.ImageUploader.url({@profile.avatar, @profile})%>" class="profile__avatar">
+          <img src="<%= @profile.avatar_url%>" class="profile__avatar">
         <% else %>
           <img src="/images/avatar.png" class="profile__avatar">
         <% end %>

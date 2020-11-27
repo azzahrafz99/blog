@@ -26,6 +26,11 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :cloudex,
+  api_key: "253668871279989",
+  secret: "AQd7lotwvwl5DLg1JDD5Y4RP1IY",
+  cloud_name: "zahrafz99"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

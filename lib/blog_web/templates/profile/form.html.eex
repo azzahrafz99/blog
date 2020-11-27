@@ -2,7 +2,7 @@
   <div class="form-group">
     <%= label f, :avatar, class: "avatar-label" do %>
       <%= if @profile.avatar do %>
-        <img src="<%= Blog.ImageUploader.url({@profile.avatar, @profile})%>" class="avatar">
+        <img src="<%= @profile.avatar_url%>" class="avatar">
       <% else %>
         <img src="/images/avatar.png" class="avatar">
       <% end %>
