@@ -6,7 +6,6 @@ defmodule BlogWeb.ProfileController do
   alias Blog.Accounts.Profile
   alias BlogWeb.Plugs.AuthUser
 
-  import Ecto.Query
   import Plug.Upload
 
   plug AuthUser when action in [:edit, :update]
@@ -32,8 +31,7 @@ defmodule BlogWeb.ProfileController do
     profile = Accounts.get_profile(id)
     profile = Repo.preload(profile, :user)
 
-    url = upload_avatar(profile_params)
-    Map.put(profile_params, "avatar_url", url)
+    Map.put(profile_params, "avatar_url", upload_avatar(profile_params))
 
     case Accounts.update_profile(profile, profile_params) do
       {:ok, _} ->
@@ -46,7 +44,7 @@ defmodule BlogWeb.ProfileController do
     end
   end
 
-  defp upload_avatar(profile) do
+  defp upload_avatar(profile_params) do
     result = Cloudex.upload(profile_params["avatar"].path) |> elem(1)
     result.secure_url
   end
