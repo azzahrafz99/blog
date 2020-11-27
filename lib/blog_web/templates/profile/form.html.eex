@@ -1,7 +1,7 @@
 <%= form_for @changeset, @action, [multipart: true, class: "form-profile"], fn f -> %>
   <div class="form-group">
     <%= label f, :avatar, class: "avatar-label" do %>
-      <%= if @profile.avatar do %>
+      <%= if @profile.avatar_url do %>
         <img src="<%= @profile.avatar_url%>" class="avatar">
       <% else %>
         <img src="/images/avatar.png" class="avatar">

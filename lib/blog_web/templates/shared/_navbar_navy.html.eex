@@ -17,7 +17,7 @@
       <%= if @signed_in? do %>
         <li class="nav-item dropdown">
           <a class="nav-link nav-link__profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= if @profile.avatar do %>
+            <%= if @profile.avatar_url do %>
               <img src="<%= @profile.avatar_url %>" class="avatar">
             <% else %>
               <img src="/images/avatar.png" class="avatar">
