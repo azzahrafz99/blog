@@ -32,7 +32,7 @@ defmodule BlogWeb.ProfileController do
     profile = Accounts.get_profile(id)
     profile = Repo.preload(profile, :user)
 
-    url = upload_avatar(profile)
+    url = upload_avatar(profile_params)
     Map.put(profile_params, "avatar_url", url)
 
     case Accounts.update_profile(profile, profile_params) do
@@ -47,7 +47,7 @@ defmodule BlogWeb.ProfileController do
   end
 
   defp upload_avatar(profile) do
-    result = Cloudex.upload("uploads/#{profile.avatar.file_name}") |> elem(1)
+    result = Cloudex.upload(profile_params["avatar"].path) |> elem(1)
     result.secure_url
   end
 end
