@@ -26,8 +26,6 @@ defmodule BlogWeb.ProfileController do
   end
 
   def update(conn, %{"user_id" => user_id, "id" => id, "profile" => profile_params}) do
-    IO.inspect profile_params
-
     profile = Accounts.get_profile(id)
     profile = Repo.preload(profile, :user)
 
@@ -46,7 +44,9 @@ defmodule BlogWeb.ProfileController do
   end
 
   defp upload_avatar(profile_params) do
-    result = Cloudex.upload(profile_params["avatar"].path) |> elem(1)
-    result.url
+    if profile_params["avatar"] do
+      result = Cloudex.upload(profile_params["avatar"].path) |> elem(1)
+      result.url
+    end
   end
 end

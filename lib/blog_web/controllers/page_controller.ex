@@ -20,6 +20,13 @@ defmodule BlogWeb.PageController do
   end
 
   defp get_profile(user) do
-    if (user.profile), do: user.profile, else: Repo.insert %Profile{user_id: user.id}
+    if (user.profile), do: user.profile, else: create_profile(user)
+  end
+
+  defp create_profile(user) do
+    case Repo.insert %Profile{user_id: user.id} do
+      {:ok, profile} ->
+        profile
+    end
   end
 end
