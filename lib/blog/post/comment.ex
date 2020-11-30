@@ -3,7 +3,6 @@ defmodule Blog.Post.Comment do
   import Ecto.Changeset
 
   schema "comments" do
-    field :approved, :boolean
     field :article_id, :id
     field :body, :string
 
