@@ -5,7 +5,6 @@ defmodule BlogWeb.RegistrationController do
 
   alias Blog.Repo
   alias Blog.Accounts
-  alias Blog.Accounts.Profile
 
   def new(conn, _) do
     render(conn, "new.html", changeset: conn)

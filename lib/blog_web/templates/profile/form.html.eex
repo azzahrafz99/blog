@@ -2,13 +2,13 @@
   <div class="form-group">
     <%= label f, :avatar, class: "avatar-label" do %>
       <%= if @profile.avatar_url do %>
-        <img src="<%= @profile.avatar_url%>" class="avatar">
+        <img src="<%= @profile.avatar_url%>" class="avatar" id="output">
       <% else %>
-        <img src="/images/avatar.png" class="avatar">
+        <img src="/images/avatar.png" class="avatar" id="output">
       <% end %>
       <img src="/images/icons/camera.png" class="icon">
     <% end %>
-    <%= file_input f, :avatar, class: "form-control-file" %>
+    <%= file_input f, :avatar, class: "form-control-file", onchange: "loadFile(event)" %>
   </div>
 
   <div class="form-group">
@@ -35,3 +35,14 @@
     <%= submit "Save", class: "btn btn-purple margin-0" %>
   </div>
 <% end %>
+
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>
