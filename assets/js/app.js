@@ -1,15 +1,27 @@
-// We need to import the CSS so that webpack will load it.
-// The MiniCssExtractPlugin is used to separate it out into
-// its own CSS file.
 import "../css/app.scss"
-
-// webpack automatically bundles all modules in your
-// entry points. Those entry points can be configured
-// in "webpack.config.js".
-//
-// Import deps with the dep name or local files with a relative path, for example:
-//
-//     import {Socket} from "phoenix"
-//     import socket from "./socket"
-//
 import "phoenix_html"
+import EditorJS from '@editorjs/editorjs/dist/editor'; 
+import Header from '@editorjs/header/dist/bundle';
+import List from '@editorjs/list/dist/bundle';
+
+const editor = new EditorJS({ 
+  /** 
+   * Id of Element that should contain the Editor 
+   */ 
+  holder: 'editorjs', 
+
+  /** 
+   * Available Tools list. 
+   * Pass Tool's class or Settings object for each Tool you want to use 
+   */ 
+  tools: { 
+    header: {
+      class: Header, 
+      inlineToolbar: ['link'] 
+    }, 
+    list: { 
+      class: List, 
+      inlineToolbar: true 
+    } 
+  }, 
+})
