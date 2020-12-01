@@ -20,7 +20,7 @@ defmodule Blog.MixProject do
   def application do
     [
       mod: {Blog.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ex_machina, :timex, :arc_ecto, :cloudex]
+      extra_applications: [:logger, :runtime_tools, :ex_machina, :timex, :arc_ecto, :cloudex, :poison]
     ]
   end
 
@@ -36,7 +36,7 @@ defmodule Blog.MixProject do
       {:phoenix, "~> 1.5.3"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},
-      {:postgrex, ">= 0.0.0"},
+      {:postgrex, "~> 0.15.7"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.2.0"},
@@ -52,7 +52,8 @@ defmodule Blog.MixProject do
       {:bcrypt_elixir, "~> 2.0"},
       {:arc, "~> 0.11.0"},
       {:arc_ecto, "~> 0.11.3"},
-      {:cloudex, "~> 1.3.0"}
+      {:cloudex, "~> 1.3.0"},
+      {:poison, "~> 3.0"},
     ]
   end
 

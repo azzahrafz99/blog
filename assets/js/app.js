@@ -45,7 +45,7 @@ if (document.getElementById('editorjs')) {
 
   saveButton.addEventListener('click', () => {
     editor.save().then(savedData => {
-      output.value = savedData;
+      output.value = JSON.stringify(savedData, null, 4);
     })
   })
 }

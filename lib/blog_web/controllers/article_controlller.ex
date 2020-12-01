@@ -40,8 +40,11 @@ defmodule BlogWeb.ArticleController do
   end
 
   def create(conn, %{"article" => article_params}) do
-    user = conn.assigns.current_user
-    user = Repo.preload(user, :profile)
+    user           = conn.assigns.current_user
+    user           = Repo.preload(user, :profile)
+    body           = Poison.decode!(article_params["body"])["blocks"]
+    article_params = Map.put(article_params, "body", body)
+
     case Post.create_article(conn.assigns.current_user, article_params) do
       {:ok, _} ->
         conn
