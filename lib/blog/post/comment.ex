@@ -14,7 +14,7 @@ defmodule Blog.Post.Comment do
   @doc false
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:body, :article_id, :user_id, :approved])
+    |> cast(attrs, [:body, :article_id, :user_id])
     |> validate_required([:body])
   end
 end

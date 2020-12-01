@@ -3,18 +3,12 @@
     <%= text_input f, :title, class: "form-control title", placeholder: "Title" %>
     <%= error_tag f, :title %>
   </div>
+  <%= hidden_input f, :body %>
+
+  <div id="editorjs"></div>
+  <pre id="output"></pre>
+
   <div class="form-group">
-    <%= textarea f, :body, class: "form-control", id: "editorjs", placeholder: "Write your story..." %>
-    <%= error_tag f, :body %>
-  </div>
-  <div class="form-group">
-    <%= submit "Publish", class: "btn btn-purple margin-0" %>
+    <%= submit "Publish", class: "btn btn-purple margin-0", id: "save-button" %>
   </div>
 <% end %>
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-<script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-
-<%# <script>
-  simplemde = new SimpleMDE({ element: document.getElementById("body-editor") });
-</script> %>

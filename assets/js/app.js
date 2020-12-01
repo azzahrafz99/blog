@@ -1,27 +1,51 @@
 import "../css/app.scss"
 import "phoenix_html"
-import EditorJS from '@editorjs/editorjs/dist/editor'; 
+import EditorJS from '@editorjs/editorjs/dist/editor';
+import Checklist from '@editorjs/simple-image/dist/bundle';
+import Embed from '@editorjs/embed/dist/bundle';
 import Header from '@editorjs/header/dist/bundle';
 import List from '@editorjs/list/dist/bundle';
+import Quote from '@editorjs/quote/dist/bundle';
+import RawTool from '@editorjs/raw/dist/bundle';
+import SimpleImage from '@editorjs/checklist/dist/bundle';
 
-const editor = new EditorJS({ 
-  /** 
-   * Id of Element that should contain the Editor 
-   */ 
-  holder: 'editorjs', 
+if (document.getElementById('editorjs')) {
+  const editor = new EditorJS({
+    holder: 'editorjs',
+    tools: {
+      header: {
+        class: Header,
+        inlineToolbar: ['link']
+      },
+      list: {
+        class: List,
+        inlineToolbar: true
+      },
+      raw: RawTool,
+      image: SimpleImage,
+      checklist: {
+        class: Checklist,
+        inlineToolbar: true,
+      },
+      embed: {
+        class: Embed,
+        config: {
+          services: {
+            youtube: true,
+            coub: true
+          }
+        }
+      },
+      quote: Quote
+    },
+  })
 
-  /** 
-   * Available Tools list. 
-   * Pass Tool's class or Settings object for each Tool you want to use 
-   */ 
-  tools: { 
-    header: {
-      class: Header, 
-      inlineToolbar: ['link'] 
-    }, 
-    list: { 
-      class: List, 
-      inlineToolbar: true 
-    } 
-  }, 
-})
+  const saveButton = document.getElementById('save-button');
+  const output = document.getElementById('article_body');
+
+  saveButton.addEventListener('click', () => {
+    editor.save().then(savedData => {
+      output.value = savedData;
+    })
+  })
+}
