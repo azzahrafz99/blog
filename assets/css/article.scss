@@ -65,6 +65,10 @@
   &__body {
     font-size: 16px;
     color: $dark-grey;
+
+    img {
+      width: 100%;
+    }
   }
 }
 

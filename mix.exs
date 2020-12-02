@@ -52,7 +52,8 @@ defmodule Blog.MixProject do
       {:bcrypt_elixir, "~> 2.0"},
       {:arc, "~> 0.11.0"},
       {:arc_ecto, "~> 0.11.3"},
-      {:cloudex, "~> 1.3.0"}
+      {:cloudex, "~> 1.3.0"},
+      {:html_entities, "~> 0.3"}
     ]
   end
 

@@ -40,6 +40,11 @@ defmodule BlogWeb.ArticleController do
   end
 
   def create(conn, %{"article" => article_params}) do
+    user           = conn.assigns.current_user
+    user           = Repo.preload(user, :profile)
+    body           = article_params["body"] |> URI.decode
+    article_params = Map.put(article_params, "body", body)
+
     case Post.create_article(conn.assigns.current_user, article_params) do
       {:ok, _} ->
         conn
@@ -47,7 +52,7 @@ defmodule BlogWeb.ArticleController do
         |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, profile: user.profile)
     end
   end
 
