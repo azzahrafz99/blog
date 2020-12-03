@@ -18,14 +18,14 @@
       <%= if @signed_in? do %>
         <li class="nav-item dropdown">
           <a class="nav-link nav-link__profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= if @profile.avatar_url do %>
-              <img src="<%= @profile.avatar_url%>" class="avatar">
+            <%= if @current_user.profile.avatar_url do %>
+              <img src="<%= @current_user.profile.avatar_url%>" class="avatar">
             <% else %>
               <img src="/images/avatar.png" class="avatar">
             <% end %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link "My Profile", to: Routes.user_profile_path(@conn, :show, @current_user, @profile), class: "dropdown-item" %>
+            <%= link "My Profile", to: Routes.user_profile_path(@conn, :show, @current_user, @current_user.profile), class: "dropdown-item" %>
             <%= link "Write", to: Routes.article_path(@conn, :new), class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
             <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete, class: "dropdown-item" %>

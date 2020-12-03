@@ -15,6 +15,7 @@ defmodule BlogWeb.ProfileController do
     profile         = Repo.preload(profile, :user)
     latest_articles = Accounts.latest_articles(user_id)
     current_user    = if (conn.assigns.current_user), do: conn.assigns.current_user, else: nil
+    current_user    = Repo.preload(current_user, :profile)
     render(conn, "show.html", profile: profile, current_user: current_user, latest_articles: latest_articles)
   end
 
