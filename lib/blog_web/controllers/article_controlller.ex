@@ -42,7 +42,7 @@ defmodule BlogWeb.ArticleController do
   def create(conn, %{"article" => article_params}) do
     user           = conn.assigns.current_user
     user           = Repo.preload(user, :profile)
-    body           = article_params["body"] |> URI.decode
+    body           = article_params["body"] |> URI.decode |> String.replace("&", "-and-")
     article_params = Map.put(article_params, "body", body)
 
     case Post.create_article(conn.assigns.current_user, article_params) do
