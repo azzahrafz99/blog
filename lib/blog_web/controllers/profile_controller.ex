@@ -22,8 +22,10 @@ defmodule BlogWeb.ProfileController do
   def edit(conn, %{"user_id" => user_id, "id" => id}) do
     profile   = Accounts.get_profile(id)
     profile   = Repo.preload(profile, :user)
+    current_user    = if (conn.assigns.current_user), do: conn.assigns.current_user, else: nil
+    current_user    = Repo.preload(current_user, :profile)
     changeset = Accounts.change_profile(profile)
-    render(conn, "edit.html", profile: profile, changeset: changeset)
+    render(conn, "edit.html", profile: profile, changeset: changeset, current_user: current_user)
   end
 
   def update(conn, %{"user_id" => user_id, "id" => id, "profile" => profile_params}) do
