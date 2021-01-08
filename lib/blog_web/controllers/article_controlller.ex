@@ -21,7 +21,7 @@ defmodule BlogWeb.ArticleController do
     user      = conn.assigns.current_user
     user      = Repo.preload(user, :profile)
     changeset = Article.changeset(%Article{}, %{})
-    render(conn, "new.html", changeset: changeset, profile: user.profile)
+    render(conn, "new.html", changeset: changeset, profile: user.profile, current_user: user)
   end
 
   def show(conn, %{"id" => id}) do
