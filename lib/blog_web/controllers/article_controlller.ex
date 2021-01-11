@@ -59,9 +59,11 @@ defmodule BlogWeb.ArticleController do
   end
 
   def edit(conn, %{"id" => id}) do
-    article = Post.get_article!(id)
-    changeset = Post.change_article(article)
-    render(conn, "edit.html", article: article, changeset: changeset)
+    article      = Post.get_article!(id)
+    current_user = conn.assigns.current_user
+    current_user = Repo.preload(current_user, :profile)
+    changeset    = Post.change_article(article)
+    render(conn, "edit.html", article: article, changeset: changeset, current_user: current_user)
   end
 
   def update(conn, %{"id" => id, "article" => article_params}) do
@@ -75,6 +77,21 @@ defmodule BlogWeb.ArticleController do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", article: article, changeset: changeset)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    article      = Post.get_article!(id)
+    current_user = conn.assigns.current_user
+    current_user = Repo.preload(current_user, :profile)
+    case Repo.delete(article) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Article deleted")
+        |> redirect(to: Routes.user_profile_path(conn, :show, current_user.id, current_user.profile.id))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "show.html", article: article, changeset: changeset)
     end
   end
 end

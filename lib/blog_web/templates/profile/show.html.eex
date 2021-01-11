@@ -34,7 +34,10 @@
 
     <div class="row articles">
       <%= if length(@latest_articles) > 0 do %>
-        <p class="title">Latest Articles</p>
+        <div class="col-12">
+          <p class="title">Latest Articles</p>
+        </div>
+
         <%= for article <- @latest_articles do %>
           <% body = markdown(article.body) |> elem(1) %>
           <div class="col-lg-12 p-3 article">
@@ -45,7 +48,26 @@
                 <img class="card-img-top" src="https://images.unsplash.com/photo-1600489000360-34bd69182634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80" alt="Card image cap">
               <% end %>
               <div class="card-body">
-                <h5 class="card-title"><%= article.title %></h5>
+                <div class="row">
+                  <div class="col-lg-11">
+                    <h5 class="card-title"><%= article.title %></h5>
+                  </div>
+
+                  <%= if @current_user do %>
+                    <div class="col-lg-1">
+                      <div class="dropdown show dropdown-more">
+                        <a class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fa fa-ellipsis-v"></i>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <%= link "Edit Article", to: Routes.article_path(@conn, :edit, article.id), class: "dropdown-item" %>
+                          <%= link "Delete Article", to: Routes.article_path(@conn, :delete, article.id), method: :delete, data: [confirm: "Are you sure you want to delete this article?"], class: "dropdown-item" %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
                 <div class="card-text"><%= markdown(description(body)) %></div>
                   <%= link to: Routes.article_path(@conn, :show, article.id), class: "btn btn-primary" do %>
                     Read More

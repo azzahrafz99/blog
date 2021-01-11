@@ -24,7 +24,7 @@
               <img src="/images/avatar.png" class="avatar">
             <% end %>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link "My Profile", to: Routes.user_profile_path(@conn, :show, @current_user, @current_user.profile), class: "dropdown-item" %>
             <%= link "Write", to: Routes.article_path(@conn, :new), class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
